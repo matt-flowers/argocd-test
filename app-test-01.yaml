@@ -9,6 +9,7 @@ kind: Deployment
 metadata:
   labels:
     app: app-test-01
+    env: staging
   name: app-test-01
   namespace: app-test-01
 spec:
