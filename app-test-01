@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: app-test-01
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app-test-01
+  name: app-test-01
+  namespace: app-test-01
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app-test-01
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: app-test-01
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
