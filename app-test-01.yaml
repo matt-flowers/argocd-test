@@ -19,10 +19,27 @@ spec:
       app: app-test-01
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: app-test-01
     spec:
       containers:
       - image: nginx:latest
         name: nginx
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: app-test-01
+    app.kubernetes.io/instance: app-test-01
+    env: staging
+  name: app-test-svc
+  namespace: app-test-01
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: app-test-01
+  type: NodePort
