@@ -43,3 +43,21 @@ spec:
   selector:
     app: app-test-01
   type: NodePort
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app-localhost
+  namespace: app-test-01
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: app-test-01
+            port:
+              number: 31688
+        path: /
+        pathType: Prefix
